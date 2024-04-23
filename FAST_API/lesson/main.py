@@ -29,3 +29,6 @@ async def get_random_id():
     return {"ip": random.choice(ip)}
 
 
+@app.get("/all")
+async def get_random_all():
+    return {"ip": random.choice(ip), "address": random.choice(address), "name": random.choice(name)}

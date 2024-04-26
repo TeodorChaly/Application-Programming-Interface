@@ -3,6 +3,7 @@
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/Django_REST/drf_site/drfsite" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/FAST_API/file_project" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

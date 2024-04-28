@@ -71,6 +71,7 @@ def add_activity(activity_id: int, activity: Activity, response: Response):
 
     return {"status": "ok"}
 
+
 @app.put("/activities/update/{activity_id}")
 def update_activity(activity_id: int, activity: Activity, response: Response):
     file = find_activity_by_id(activity_id)
@@ -85,6 +86,7 @@ def update_activity(activity_id: int, activity: Activity, response: Response):
         with open(os.path.join(activities_folder, f"activity_{activity_id}.json"), "w") as f:
             f.write(act.json())
         return {"status": "ok"}
+
 
 @app.delete("/activities/delete/{activity_id}")
 def delete_activity(activity_id: int, response: Response):

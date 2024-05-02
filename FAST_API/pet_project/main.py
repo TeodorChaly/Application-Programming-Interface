@@ -1,10 +1,10 @@
 from typing import Optional, Annotated
 
 from fastapi import FastAPI, Depends
-from pydantic import BaseModel
 
 from contextlib import asynccontextmanager
 
+from FAST_API.pet_project.schema import STaskAdded
 from database import create_tables, drop_tables
 
 
@@ -21,13 +21,6 @@ async def lifespan(app: FastAPI):
 
     print("Shutting down")
 
-class STaskAdded(BaseModel):
-    name: str
-    description: Optional[str] = None
-
-
-class STask(STaskAdded):
-    id: int
 
 
 # @app.get("/tasks/")

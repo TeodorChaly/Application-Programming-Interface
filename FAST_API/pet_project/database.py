@@ -13,7 +13,7 @@ class Model(DeclarativeBase):
     pass
 
 
-class TaskORM():
+class TaskORM(Model):
     __tablename__ = "tasks"
 
     id: Mapped[int] = mapped_column(primary_key=True)

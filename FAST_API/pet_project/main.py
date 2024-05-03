@@ -1,11 +1,8 @@
-from typing import Optional, Annotated
-
-from fastapi import FastAPI, Depends
-
+from fastapi import FastAPI
 from contextlib import asynccontextmanager
 
-from FAST_API.pet_project.schema import STaskAdded
-from database import create_tables, drop_tables
+from .database import create_tables, drop_tables
+from .router import router as task_router
 
 
 def fake_answer_to_everything_ml_model(x: float):
@@ -22,19 +19,5 @@ async def lifespan(app: FastAPI):
     print("Shutting down")
 
 
-
-# @app.get("/tasks/")
-# def get_home():
-#     task = Task(name="Task 1")
-#     return {"data": task}
-
-tasks = []
 app = FastAPI(lifespan=lifespan)
-
-
-@app.post("/tasks/")
-async def create_task(
-        task: Annotated[STaskAdded, Depends()]
-):
-    tasks.append(task)
-    return {"ok": tasks}
+app.include_router(task_router)

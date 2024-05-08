@@ -37,7 +37,7 @@ async def async_scraping_random():
         return word, "Error"
 
 
-@app.get("/random/")
+@app.post("/random/")
 async def add_trades():
     info = await asyncio.gather(async_scraping_random())
     return {"name": info[0][0], "price": info[0][1]}

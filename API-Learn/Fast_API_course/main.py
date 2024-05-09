@@ -13,19 +13,27 @@ def get_hotels(hotel_id: int):  # hotel_id - int validation, date to and from - 
     return hotel_id
 
 
-@app.get("/hotels_search")
+class SHotel(BaseModel):  # For frontend developers to know what to expect
+    address: str
+    name: str
+    stars: int
+
+
+@app.get("/hotels_search", response_model=list[SHotel])  # Or use -> list[SHotel] to show expected response
 def get_hotels(
         location,
-        date_from: date,
-        date_to: date,
+        date_from: Optional[date] = None,
+        date_to: Optional[date] = None,
         has_spa: Optional[bool] = None,  # Optional param
         stars: Optional[int] = Query(None, ge=1, le=5),  # Double validation
+) -> list[SHotel]:
+    hotels = [
+        {"address": "West York 1", "name": "Hotel A", "stars": 2},
+    ]
+    return hotels
 
-):
-    return date_from, date_to
 
-
-class SBooking(BaseModel):  # S - schema
+class SBooking(BaseModel):  # S - schema, request model
     room_id: int
     date_from: date
     date_to: date

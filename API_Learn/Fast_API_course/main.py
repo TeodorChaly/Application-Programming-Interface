@@ -44,4 +44,4 @@ def add_booking(booking: SBooking):
     pass
 
 # Command to start web server:
-# uvicorn API-Learn.Fast_API_course.main:app --reload
+# uvicorn API_Learn-Learn.Fast_API_course.main:app --reload

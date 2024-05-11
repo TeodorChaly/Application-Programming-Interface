@@ -1,18 +1,8 @@
-from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
-from sqlalchemy.orm import DeclarativeBase, sessionmaker
 
-DP_HOST = "localhost"
-DP_PORT = 5432
-DP_USER = "postgres"
-DP_PASSWORD = "postgres"
-DP_NAME = "postgres"
+from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker, AsyncSession
+from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 
-DATABASE_URL = f"postgresql+asyncpg://{DP_USER}:{DP_PASSWORD}@{DP_HOST}:{DP_PORT}/{DP_NAME}"
-
-engine = create_async_engine(DATABASE_URL)
-
-async_session_maker = sessionmaker(engine, class_=AsyncSession, expire_on_commit=False)
-
-
-class Base(DeclarativeBase):
-    pass
+engine = create_async_engine(
+    "sqlite+aiosqlite:///API_Learn/Fast_API_course/tasks.db"
+)
+new_session = async_sessionmaker(engine, class_=AsyncSession, expire_on_commit=False)

@@ -3,9 +3,11 @@ from typing import Optional
 from fastapi import FastAPI, Query
 from datetime import date
 from pydantic import BaseModel
+from API_Learn.Fast_API_course.user.router import router as user_router
 from API_Learn.Fast_API_course.hotels.router import router as hotels_router
 
 app = FastAPI()
+app.include_router(user_router)
 app.include_router(hotels_router)
 
 

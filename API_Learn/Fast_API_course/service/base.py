@@ -1,4 +1,4 @@
-from sqlalchemy import select
+from sqlalchemy import select, insert
 
 from API_Learn.Fast_API_course.database import new_session
 
@@ -13,3 +13,10 @@ class BaseDAO:
             result = await session.execute(query)  # Execute the query
             print(result.all())
         return {"message": "Hello, World!"}
+
+    @classmethod
+    async def add(cls, **data):
+        async with new_session() as session:
+            query = insert(cls.model).values(**data)
+            await session.execute(query)
+            await session.commit()

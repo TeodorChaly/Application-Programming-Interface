@@ -8,7 +8,10 @@ class UserDAO(BaseDAO):
     async def find_user_by_email(cls, **filters):
         print(filters)
         test_db = [
-            {"email": "test1@gmail.com", "password": "123"},
+            {"email": "user@example.com", "password": "123"},
             {"email": "test2@gmail.com", "password": "123"}
         ]
+        for user in test_db:
+            if user["email"] == filters["email"]:
+                return user
         return None

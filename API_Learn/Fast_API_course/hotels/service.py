@@ -1,11 +1,7 @@
-# service
 import random
 from datetime import date
-from operator import or_
+# from sqlalchemy import select, and_
 
-from sqlalchemy import select, and_
-
-from API_Learn.Fast_API_course.database import new_session
 from API_Learn.Fast_API_course.hotels.models import Hotels
 from API_Learn.Fast_API_course.service.base import BaseDAO
 

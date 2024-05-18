@@ -1,27 +1,25 @@
 # pip install fastapi[all]
-from typing import Optional
-from fastapi import FastAPI, Query
-from datetime import date
-from pydantic import BaseModel
+from fastapi import FastAPI
+
 from API_Learn.Fast_API_course.user.router import router as user_router
 from API_Learn.Fast_API_course.hotels.router import router as hotels_router
+from API_Learn.Fast_API_course.pages.router import router as pages_router
 
 app = FastAPI()
 app.include_router(user_router)
 app.include_router(hotels_router)
+app.include_router(pages_router)
 
+
+# class SHotel(BaseModel):  # For frontend developers to know what to expect
+#     address: str
+#     name: str
+#     stars: int
 
 # endpoint
 # @app.get("/hotels/{hotel_id}")  # hotel_id - variable
 # def get_hotels(hotel_id: int):  # hotel_id - int validation, date to and from - queries
 #     return hotel_id
-
-
-class SHotel(BaseModel):  # For frontend developers to know what to expect
-    address: str
-    name: str
-    stars: int
-
 
 # @app.get("/hotels_search", response_model=list[SHotel])  # Or use -> list[SHotel] to show expected response
 # def get_hotels(
@@ -37,11 +35,10 @@ class SHotel(BaseModel):  # For frontend developers to know what to expect
 #     return hotels
 
 
-class SBooking(BaseModel):  # S - schema, request model
-    room_id: int
-    date_from: date
-    date_to: date
-
+# class SBooking(BaseModel):  # S - schema, request model
+#     room_id: int
+#     date_from: date
+#     date_to: date
 
 
 # Command to start web server:

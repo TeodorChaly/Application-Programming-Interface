@@ -1,5 +1,6 @@
 # pip install fastapi[all]
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 from API_Learn.Fast_API_course.user.router import router as user_router
 from API_Learn.Fast_API_course.hotels.router import router as hotels_router
@@ -10,6 +11,17 @@ app.include_router(user_router)
 app.include_router(hotels_router)
 app.include_router(pages_router)
 
+origins = [
+    "http://localhost",  # Allowed host to send requests
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # class SHotel(BaseModel):  # For frontend developers to know what to expect
 #     address: str

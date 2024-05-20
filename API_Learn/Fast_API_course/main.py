@@ -6,6 +6,7 @@ from API_Learn.Fast_API_course.user.router import router as user_router
 from API_Learn.Fast_API_course.hotels.router import router as hotels_router
 from API_Learn.Fast_API_course.pages.router import router as pages_router
 
+
 app = FastAPI()
 app.include_router(user_router)
 app.include_router(hotels_router)
@@ -22,6 +23,14 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Redis cache initialization
+# @app.on_event("startup")
+# async def startup_event():
+#     redis = aioredis.from_url("redis://localhost:6379", encoding="utf-8", decode_responses=True)
+#     FastAPICache.init(RedisBackend(redis), prefix="cache")
+
+
 
 # class SHotel(BaseModel):  # For frontend developers to know what to expect
 #     address: str

@@ -6,6 +6,7 @@ from API_Learn.Fast_API_course.hotels.models import Hotels
 from API_Learn.Fast_API_course.hotels.service import HotelDAO
 from API_Learn.Fast_API_course.user.dependencis import get_current_user
 from FAST_API.pet_project.database import new_session
+# from fastapi-cache.decoreator import cache
 
 router = APIRouter(
     prefix="/hotels",
@@ -14,7 +15,9 @@ router = APIRouter(
 
 
 @router.get("")
+# @cache(expire=20)
 async def get_hotels(user: str = Depends(get_current_user)):  # First function (depends) to be called
+    # await asyncio.sleep(2) # Simulate a delay
     result = await HotelDAO.find_all()
     return result
 

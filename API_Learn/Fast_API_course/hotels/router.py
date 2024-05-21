@@ -6,6 +6,8 @@ from API_Learn.Fast_API_course.hotels.models import Hotels
 from API_Learn.Fast_API_course.hotels.service import HotelDAO
 from API_Learn.Fast_API_course.user.dependencis import get_current_user
 from FAST_API.pet_project.database import new_session
+from API_Learn.Fast_API_course.tasks.tasks import process_pic
+
 # from fastapi-cache.decoreator import cache
 
 router = APIRouter(
@@ -19,6 +21,7 @@ router = APIRouter(
 async def get_hotels(user: str = Depends(get_current_user)):  # First function (depends) to be called
     # await asyncio.sleep(2) # Simulate a delay
     result = await HotelDAO.find_all()
+    process_pic.delay("API_Learn/Fast_API_course/static/img/img.png")  # Call the task
     return result
 
 

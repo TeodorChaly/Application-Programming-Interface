@@ -1,6 +1,6 @@
-from API_Learn.Fast_API_course.tasks import celery
 from PIL import Image
 from pathlib import Path
+from API_Learn.Fast_API_course.tasks.celery_task import celery
 
 
 @celery.task

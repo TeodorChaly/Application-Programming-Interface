@@ -1,6 +1,6 @@
 from datetime import date
 
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, BackgroundTasks
 
 from API_Learn.Fast_API_course.hotels.models import Hotels
 from API_Learn.Fast_API_course.hotels.service import HotelDAO
@@ -23,6 +23,16 @@ async def get_hotels(user: str = Depends(get_current_user)):  # First function (
     result = await HotelDAO.find_all()
     process_pic.delay("API_Learn/Fast_API_course/static/img/img.png")  # Call the task
     return result
+
+
+@router.get("/test_background")
+async def test_background(background_task: BackgroundTasks):  # Background (From FastAPI) don't return results
+    background_task.add_task(test_background_func, "1")
+    return {"message": "Test background"}
+
+
+def test_background_func(params):
+    print(f"Test background function {params}")
 
 
 @router.get("/{room_id}")

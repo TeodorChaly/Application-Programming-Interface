@@ -27,6 +27,11 @@ class HotelDAO(BaseDAO):
 
         # Logic of booking
         if_booked = random.randint(0, 1)
+
+        if date_to <= date_from:
+            return {"message": "Incorrect date"}
+
         if if_booked:
             return {"message": "Room is booked"}
+        print(user_id, room_id, date_from, date_to)
         return {"message": "Room is not available"}

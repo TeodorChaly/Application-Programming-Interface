@@ -40,7 +40,7 @@ def get_room_id(room_id: int):
     pass
 
 
-@router.post("add_booking")
+@router.post("/add_booking")
 async def add_booking(
         room_id: int, date_from: date, date_to: date,
         user: str = Depends(get_current_user)):

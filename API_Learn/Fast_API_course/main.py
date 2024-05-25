@@ -31,7 +31,6 @@ app.add_middleware(
 #     FastAPICache.init(RedisBackend(redis), prefix="cache")
 
 
-
 # class SHotel(BaseModel):  # For frontend developers to know what to expect
 #     address: str
 #     name: str

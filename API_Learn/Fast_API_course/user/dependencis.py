@@ -3,8 +3,11 @@ from datetime import datetime
 import jwt
 from fastapi import Request, HTTPException, Depends
 
-from API_Learn.Fast_API_course.exeption.exceptions import TokenExpiredException, TokenNotFoundException, \
-    IncorrectTokenFormatException
+from API_Learn.Fast_API_course.exeption.exceptions import (
+    TokenExpiredException,
+    TokenNotFoundException,
+    IncorrectTokenFormatException,
+)
 from API_Learn.Fast_API_course.user.service import UserDAO
 
 

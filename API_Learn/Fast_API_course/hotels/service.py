@@ -1,9 +1,11 @@
 import random
 from datetime import date
-# from sqlalchemy import select, and_
 
 from API_Learn.Fast_API_course.hotels.models import Hotels
 from API_Learn.Fast_API_course.service.base import BaseDAO
+
+
+# from sqlalchemy import select, and_
 
 
 class HotelDAO(BaseDAO):
@@ -11,11 +13,11 @@ class HotelDAO(BaseDAO):
 
     @classmethod
     async def add(
-            cls,
-            user_id: str,
-            room_id: int,
-            date_from: date,
-            date_to: date,
+        cls,
+        user_id: str,
+        room_id: int,
+        date_from: date,
+        date_to: date,
     ):
         # booked_room = select(Hotels).where(  # SQLAlchemy query
         #     and_(

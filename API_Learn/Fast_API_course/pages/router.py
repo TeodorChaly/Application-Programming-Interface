@@ -13,4 +13,6 @@ templates = Jinja2Templates(directory="API_Learn/Fast_API_course/templates")
 
 @router.get("/hotels")
 async def get_hotels_page(request: Request, hotels=Depends(get_hotels)):
-    return templates.TemplateResponse(name="hotels.html", context={"request": request, "hotels": hotels})
+    return templates.TemplateResponse(
+        name="hotels.html", context={"request": request, "hotels": hotels}
+    )

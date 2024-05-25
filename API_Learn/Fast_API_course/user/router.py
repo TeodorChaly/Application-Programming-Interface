@@ -1,8 +1,15 @@
 from fastapi import APIRouter, Depends
 from fastapi import Response
 
-from API_Learn.Fast_API_course.exeption.exceptions import UserAlreadyExistsException, IncorrectPasswordOrEmailException
-from API_Learn.Fast_API_course.user.auth import get_password_hash, authenticate_user, create_access_token
+from API_Learn.Fast_API_course.exeption.exceptions import (
+    UserAlreadyExistsException,
+    IncorrectPasswordOrEmailException,
+)
+from API_Learn.Fast_API_course.user.auth import (
+    get_password_hash,
+    authenticate_user,
+    create_access_token,
+)
 from API_Learn.Fast_API_course.user.dependencis import get_current_user
 from API_Learn.Fast_API_course.user.schemas import SAuth
 from API_Learn.Fast_API_course.user.service import UserDAO
@@ -10,7 +17,6 @@ from API_Learn.Fast_API_course.user.service import UserDAO
 router = APIRouter(
     prefix="/auth",
     tags=["Auth"],
-
 )
 
 

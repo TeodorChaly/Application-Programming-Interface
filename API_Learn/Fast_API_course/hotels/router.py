@@ -18,7 +18,9 @@ router = APIRouter(
 
 @router.get("")
 # @cache(expire=20)
-async def get_hotels(user: str = Depends(get_current_user)):  # First function (depends) to be called
+async def get_hotels(
+    user: str = Depends(get_current_user),
+):  # First function (depends) to be called
     # await asyncio.sleep(2) # Simulate a delay
     result = await HotelDAO.find_all()
     process_pic.delay("API_Learn/Fast_API_course/static/img/img.png")  # Call the task
@@ -26,7 +28,9 @@ async def get_hotels(user: str = Depends(get_current_user)):  # First function (
 
 
 @router.get("/test_background")
-async def test_background(background_task: BackgroundTasks):  # Background (From FastAPI) don't return results
+async def test_background(
+    background_task: BackgroundTasks,
+):  # Background (From FastAPI) don't return results
     background_task.add_task(test_background_func, "1")
     return {"message": "Test background"}
 
@@ -42,7 +46,7 @@ def get_room_id(room_id: int):
 
 @router.post("/add_booking")
 async def add_booking(
-        room_id: int, date_from: date, date_to: date,
-        user: str = Depends(get_current_user)):
+    room_id: int, date_from: date, date_to: date, user: str = Depends(get_current_user)
+):
     result = await HotelDAO.add(user, room_id, date_from, date_to)
     return result

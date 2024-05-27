@@ -1,6 +1,7 @@
 # pip install fastapi[all]
 import time
 
+from fastapi_versioning import VersionedFastAPI
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -35,6 +36,17 @@ async def add_process_time_header(request: Request, call_next):
     response.headers["X-Process-Time"] = str(process_time)
     logger.info("Request execution time", extra={"process_time": round(process_time)})
     return response
+
+
+
+app = VersionedFastAPI(app,
+    version_format='{major}',
+    prefix_format='/v{major}',
+    # description='Greet users with a nice message',
+    # middleware=[
+    #     Middleware(SessionMiddleware, secret_key='mysecretkey')
+    # ]
+)
 
 # Redis cache initialization
 # @app.on_event("startup")

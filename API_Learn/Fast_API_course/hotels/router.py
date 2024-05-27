@@ -7,6 +7,7 @@ from API_Learn.Fast_API_course.hotels.service import HotelDAO
 from API_Learn.Fast_API_course.user.dependencis import get_current_user
 from FAST_API.pet_project.database import new_session
 from API_Learn.Fast_API_course.tasks.tasks import process_pic
+from fastapi_versioning import  version
 
 # from fastapi-cache.decoreator import cache
 
@@ -17,6 +18,7 @@ router = APIRouter(
 
 
 @router.get("")
+@version(1)
 # @cache(expire=20)
 async def get_hotels(
     user: str = Depends(get_current_user),
@@ -28,6 +30,7 @@ async def get_hotels(
 
 
 @router.get("/test_background")
+@version(1)
 async def test_background(
     background_task: BackgroundTasks,
 ):  # Background (From FastAPI) don't return results
@@ -40,11 +43,13 @@ def test_background_func(params):
 
 
 @router.get("/{room_id}")
+@version(1)
 def get_room_id(room_id: int):
     pass
 
 
 @router.post("/add_booking")
+@version(1)
 async def add_booking(
     room_id: int, date_from: date, date_to: date, user: str = Depends(get_current_user)
 ):

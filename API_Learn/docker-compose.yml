@@ -1,0 +1,39 @@
+version: '3.7'
+services:
+  db:
+    image: postgres:15
+    container_name: hotels_db
+    ports:
+      - 5432:5432
+
+  redis:
+    image: redis:7
+    container_name: hotels_redis
+
+  booking:
+    image: hotels_image
+    build:
+      context: .
+    container_name: hotels_app
+    depends_on:
+      - db
+      - redis
+    command: [ "/hotels/docker/app.sh" ]
+    ports:
+      - 9000:8000
+
+  celery:
+    build:
+      context: .
+    container_name: hotels_celery
+    depends_on:
+      - redis
+    command: [ "/hotels/docker/celery.sh", "celery"]
+
+  flower:
+     build:
+       context: .
+     container_name: hotels_flower
+     depends_on:
+       - redis
+     command: [ "/hotels/docker/celery.sh", "flower"" ]

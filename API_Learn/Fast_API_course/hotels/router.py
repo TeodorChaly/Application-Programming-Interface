@@ -7,7 +7,7 @@ from API_Learn.Fast_API_course.hotels.service import HotelDAO
 from API_Learn.Fast_API_course.user.dependencis import get_current_user
 from FAST_API.pet_project.database import new_session
 from API_Learn.Fast_API_course.tasks.tasks import process_pic
-from fastapi_versioning import  version
+from fastapi_versioning import version
 
 # from fastapi-cache.decoreator import cache
 

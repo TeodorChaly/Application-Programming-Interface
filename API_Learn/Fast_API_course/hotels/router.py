@@ -45,7 +45,7 @@ def test_background_func(params):
 @router.get("/{room_id}")
 @version(1)
 def get_room_id(room_id: int):
-    pass
+    return 123
 
 
 @router.post("/add_booking")
